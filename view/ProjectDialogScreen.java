@@ -15,6 +15,7 @@ import model.Project;
 public class ProjectDialogScreen extends javax.swing.JDialog {
 
     ProjectController controller;
+
     /**
      * Creates new form ProjectDialogScreen
      */
@@ -22,7 +23,7 @@ public class ProjectDialogScreen extends javax.swing.JDialog {
         super(parent, modal);
         initComponents();
         controller = new ProjectController();
-        
+
     }
 
     /**
@@ -152,18 +153,22 @@ public class ProjectDialogScreen extends javax.swing.JDialog {
 
     private void jLabelToolBarSaveMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabelToolBarSaveMouseClicked
         // TODO add your handling code here:
-        try{
-            Project project = new Project();
-        project.setName(jTextFieldName.getText());
-        project.setDescription(jTextAreaDescription.getText());
-        
-        controller.save(project);
-        JOptionPane.showMessageDialog(rootPane, "Projeto salvo com sucesso");
-        
-        }catch(Exception e){
+        try {
+            if (!jTextFieldName.getText().equals("")) {
+                Project project = new Project();
+                project.setName(jTextFieldName.getText());
+                project.setDescription(jTextAreaDescription.getText());
+
+                controller.save(project);
+                JOptionPane.showMessageDialog(rootPane, "Projeto salvo com sucesso");
+                this.dispose();
+            } else {
+                JOptionPane.showMessageDialog(rootPane, "O projeto não foi salvo porque o campo nome não foi preenchido");
+            }
+        } catch (Exception e) {
             JOptionPane.showMessageDialog(rootPane, e.getMessage());
         }
-            this.dispose();
+
 
     }//GEN-LAST:event_jLabelToolBarSaveMouseClicked
 

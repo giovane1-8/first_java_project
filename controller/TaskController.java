@@ -48,7 +48,7 @@ public class TaskController {
     }
 
     public void update(Task task) {
-        String sql = "UPDATE tasks SET idProject=?, name=?, description=?, notes = ?, completed=?, deadline = ?, createdAt = ?, updateAt = ? WHERE id = ?";
+        String sql = "UPDATE tasks SET idProject=?, name=?, description=?, notes = ?, completed=?, deadline = ?, createdAt = ?, updatedAt = ? WHERE id = ?";
 
         Connection connection = null;
         PreparedStatement statement = null;
@@ -73,7 +73,7 @@ public class TaskController {
         }
     }
 
-    public void removeById(int taskId) throws SQLException {
+    public void removeById(int taskId) {
         String sql = "DELETE FROM tasks WHERE id = ?";
         Connection conn = null;
         PreparedStatement statement = null;
@@ -91,7 +91,7 @@ public class TaskController {
     }
 
     public List<Task> getAll(int idProject) {
-        String sql = "SELECT * FROM task WHERE idProject = ?";
+        String sql = "SELECT * FROM tasks WHERE idProject = ?";
 
         Connection connection = null;
         PreparedStatement statement = null;
